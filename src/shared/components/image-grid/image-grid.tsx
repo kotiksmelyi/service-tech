@@ -3,8 +3,8 @@ import { Gallery } from 'react-grid-gallery';
 import { ImageGridProps } from './types';
 import './image-grid.styles.scss';
 
-const ImageGrid: FC<ImageGridProps> = ({ data }) => {
-  const [images, setImages] = useState(data);
+const ImageGrid: FC<ImageGridProps> = ({ ...props }) => {
+  const [images, setImages] = useState(props.images);
 
   const handleSelect = (index: number) => {
     const nextImages = images.map((image, i) => (i === index ? { ...image, isSelected: !image.isSelected } : image));
@@ -13,7 +13,7 @@ const ImageGrid: FC<ImageGridProps> = ({ data }) => {
 
   return (
     <div className="ui-image-grid">
-      <Gallery  images={images} onSelect={handleSelect} />
+      <Gallery images={images} onSelect={handleSelect} />
     </div>
   );
 };
