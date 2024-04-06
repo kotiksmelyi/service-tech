@@ -10,16 +10,6 @@
   padding: 24px 3%;
 }
 
-.search-buttons {
-  display: flex;
-  align-items: flex-end;
-  height: 100%;
-
-  .button {
-    height: 38px;
-  }
-}
-
 .upload-hint {
   color: $black-light;
   margin-top: 32px;

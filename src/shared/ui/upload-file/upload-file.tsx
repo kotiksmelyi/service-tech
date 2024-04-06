@@ -1,14 +1,17 @@
-import { Upload, Image, UploadFile as IUploadFile, UploadProps, Spin } from 'antd';
-import { FC, Fragment, useEffect, useState } from 'react';
-import './upload-file.styles.scss';
+import { Button } from '@/shared/ui/button';
+import CameraIcon from '@shared/assets/icons/camera-circle.svg?react';
+import SearchIcon from '@shared/assets/icons/search.svg?react';
+import UploadIcon from '@shared/assets/icons/upload.svg?react';
+import { Col, Flex, UploadFile as IUploadFile, Image, Row, Upload, UploadProps } from 'antd';
 import { RcFile } from 'antd/es/upload';
+import { FC, useEffect, useState } from 'react';
+import './upload-file.styles.scss';
 
 interface UploadFileProps extends UploadProps {
-  buttons?: React.ReactNode[];
   value?: { file: IUploadFile; fileList: FileList };
 }
 
-const UploadFile: FC<UploadFileProps> = ({ buttons, value, ...props }) => {
+const UploadFile: FC<UploadFileProps> = ({ value, ...props }) => {
   const { Dragger } = Upload;
 
   //   const props: UploadProps = {
@@ -61,20 +64,53 @@ const UploadFile: FC<UploadFileProps> = ({ buttons, value, ...props }) => {
     >
       <p className="ant-upload-text">Загрузите фотографию</p>
       <p className="ant-upload-hint">Нажмите или перетащите файл в эту область</p>
-      {value?.file.status === 'uploading' && <Spin />}
+      <div className="ant-upload-hint-mobile">
+        Сделайте или загрузите фото. Умный поиск составит коллекцию похожих изображений.
+      </div>
       {preview && (
         <div className="preview" onClick={(e) => e.stopPropagation()}>
           <Image className="image" width={50} height={50} src={preview} />
           <span>{value?.file.name}</span>
         </div>
       )}
-      {buttons && (
-        <div className="ant-upload-buttons">
-          {buttons?.map((button, index) => (
-            <Fragment key={index}>{button}</Fragment>
-          ))}
-        </div>
-      )}
+      <div className="buttons">
+        <Row gutter={[8, 8]}>
+          {value ? (
+            <>
+              <Col sm={12} md={24}>
+                <Button className="button">Изменить файл</Button>
+              </Col>
+              <Col span={24}>
+                <Button className="button" htmlType="submit" type="primary" onClick={(e) => e.stopPropagation()}>
+                  <Flex align="center" gap={8}>
+                    Найти
+                    <SearchIcon />
+                  </Flex>
+                </Button>
+              </Col>
+            </>
+          ) : (
+            <>
+              <Col xs={24} sm={24} md={12}>
+                <Button className="button" onClick={(e) => e.stopPropagation()}>
+                  <Flex align="center" gap={8}>
+                    <CameraIcon />
+                    Сделать фото
+                  </Flex>
+                </Button>
+              </Col>
+              <Col xs={24} sm={24} md={12}>
+                <Button className="button">
+                  <Flex align="center" gap={8}>
+                    <UploadIcon />
+                    Загрузить фото
+                  </Flex>
+                </Button>
+              </Col>
+            </>
+          )}
+        </Row>
+      </div>
     </Dragger>
   );
 };

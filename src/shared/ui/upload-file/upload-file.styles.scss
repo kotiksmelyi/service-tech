@@ -1,6 +1,12 @@
 @import '../../styles/index.scss';
 
 .ui-upload {
+  .ant-upload {
+    @media screen and (max-width: 768px) {
+      padding: 10px 0 !important;
+    }
+  }
+
   &.ant-upload-wrapper {
     .ant-upload.ant-upload-drag {
       background: $grey-light;
@@ -9,6 +15,9 @@
       border-width: 2px;
       border-radius: 0 0 20px 20px;
       text-align: left;
+      @media screen and (max-width: 768px) {
+        border-color: transparent;
+      }
 
       .preview {
         margin: 4px 0;
@@ -20,21 +29,47 @@
         }
       }
 
+      .ant-upload-hint-mobile {
+        display: none;
+        margin: 0;
+        font-weight: 500;
+        color: $black;
+        @media screen and (max-width: 768px) {
+          display: block;
+        }
+      }
+
       .ant-upload-text {
         font-size: 20px;
         font-weight: 500;
-        margin: 0;
       }
       .ant-upload-hint {
         font-size: 12px;
+      }
+
+      .ant-upload-text,
+      .ant-upload-hint {
         margin: 0;
+        @media screen and (max-width: 768px) {
+          display: none;
+        }
       }
-      .ant-upload-buttons {
-        margin-top: 8px;
-        max-width: 400px;
-        display: flex;
-        gap: 4px;
-      }
+    }
+  }
+
+  & .buttons {
+    margin-top: 8px;
+    gap: 4px;
+    height: 100%;
+    width: 100%;
+    max-width: 400px;
+    @media screen and (max-width: 768px) {
+      max-width: 100%;
+    }
+
+    .button {
+      width: 100%;
+      height: 38px;
     }
   }
 }

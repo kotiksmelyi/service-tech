@@ -1,12 +1,10 @@
 import { Col, Flex, Form, Row } from 'antd';
-import './search.styles.scss';
-import ImageGrid from '../../shared/components/image-grid/image-grid';
-import SearchToggles from '../../shared/components/search-toggles/search-toggles';
-import SearchIcon from '../../shared/assets/icons/search.svg?react';
-import UploadFile from '../../shared/ui/upload-file/upload-file';
-import { Button } from '@/shared/ui/button';
 import { useForm, useWatch } from 'antd/es/form/Form';
 import FormItem from 'antd/es/form/FormItem';
+import ImageGrid from '../../shared/components/image-grid/image-grid';
+import SearchToggles from '../../shared/components/search-toggles/search-toggles';
+import UploadFile from '../../shared/ui/upload-file/upload-file';
+import './search.styles.scss';
 
 const SearchPhoto = () => {
   const [form] = useForm();
@@ -43,17 +41,7 @@ const SearchPhoto = () => {
             <SearchToggles />
             <Form className="upload-wrapper" onFinish={console.log} form={form}>
               <FormItem name={'image'}>
-                <UploadFile
-                  buttons={[
-                    <Button>Изменить файл</Button>,
-                    <Button htmlType="submit" type="primary" onClick={(e) => e.stopPropagation()}>
-                      <Flex align="center" gap={8}>
-                        Найти
-                        <SearchIcon />
-                      </Flex>
-                    </Button>,
-                  ]}
-                />
+                <UploadFile />
               </FormItem>
             </Form>
           </Flex>
