@@ -41,12 +41,12 @@ const SearchPhoto = () => {
         <Col xs={24} md={20}>
           <Flex vertical>
             <SearchToggles />
-            <Form className="upload-wrapper" form={form}>
-              <FormItem name={'query'}>
+            <Form className="upload-wrapper" onFinish={console.log} form={form}>
+              <FormItem name={'image'}>
                 <UploadFile
                   buttons={[
                     <Button>Изменить файл</Button>,
-                    <Button type="primary" onClick={(e) => e.stopPropagation()}>
+                    <Button htmlType="submit" type="primary" onClick={(e) => e.stopPropagation()}>
                       <Flex align="center" gap={8}>
                         Найти
                         <SearchIcon />
