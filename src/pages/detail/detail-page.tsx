@@ -1,4 +1,3 @@
-export const DetailPage = () => {
-  // const { t } = useTranslation();
-  return <div>ddd</div>;
-};
+import { SearchDetail } from '@features/search-detail';
+
+export const DetailPage = () => <SearchDetail />;

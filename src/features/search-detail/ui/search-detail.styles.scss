@@ -1,0 +1,10 @@
+.search-detail {
+  &-fullscreen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &-image {
+    height: 100vh !important;
+  }
+}
