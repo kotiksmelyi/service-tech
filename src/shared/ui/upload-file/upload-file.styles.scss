@@ -1,0 +1,28 @@
+@import '../../styles/index.scss';
+
+.ui-upload {
+  &.ant-upload-wrapper {
+    .ant-upload.ant-upload-drag {
+      background: $grey-light;
+      border-color: $grey;
+      border-top: none;
+      border-width: 2px;
+      border-radius: 0 0 20px 20px;
+      text-align: left;
+      .ant-upload-text {
+        font-size: 20px;
+        font-weight: 500;
+        margin: 0;
+      }
+      .ant-upload-hint {
+        font-size: 12px;
+        margin: 0;
+      }
+      .ant-upload-buttons {
+        margin-top: 8px;
+        display: flex;
+        gap: 4px;
+      }
+    }
+  }
+}
