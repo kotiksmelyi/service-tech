@@ -5,7 +5,10 @@ import UploadIcon from '@shared/assets/icons/upload.svg?react';
 import { Col, Flex, UploadFile as IUploadFile, Image, Row, Upload, UploadProps } from 'antd';
 import { RcFile } from 'antd/es/upload';
 import { FC, useEffect, useState } from 'react';
-import './upload-file.styles.scss';
+import './upload-image.styles.scss';
+
+import { useToggle } from '@/shared/hooks/use-toggle';
+import { DrawerCamera } from '../drawer-camera';
 
 interface UploadFileProps extends UploadProps {
   value?: { file: IUploadFile; fileList: FileList };
@@ -13,26 +16,6 @@ interface UploadFileProps extends UploadProps {
 
 const UploadFile: FC<UploadFileProps> = ({ value, ...props }) => {
   const { Dragger } = Upload;
-
-  //   const props: UploadProps = {
-  //     name: 'file',
-  //     multiple: true,
-  //     action: 'https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload',
-  //     onChange(info) {
-  //       const { status } = info.file;
-  //       if (status !== 'uploading') {
-  //         console.log(info.file, info.fileList);
-  //       }
-  //       if (status === 'done') {
-  //         message.success(`${info.file.name} file uploaded successfully.`);
-  //       } else if (status === 'error') {
-  //         message.error(`${info.file.name} file upload failed.`);
-  //       }
-  //     },
-  //     onDrop(e) {
-  //       console.log('Dropped files', e.dataTransfer.files);
-  //     },
-  //   };
 
   const getBase64 = (file: RcFile): Promise<string> =>
     new Promise((resolve, reject) => {
@@ -44,7 +27,8 @@ const UploadFile: FC<UploadFileProps> = ({ value, ...props }) => {
 
   const [preview, setPreview] = useState('');
   const handlePreview = async (file: any) => {
-    const res = await getBase64(file.originFileObj as RcFile);
+    const originFile = 'originFileObj' in file ? file.originFileObj : file;
+    const res = await getBase64(originFile);
     setPreview(res as string);
   };
 
@@ -53,6 +37,8 @@ const UploadFile: FC<UploadFileProps> = ({ value, ...props }) => {
       handlePreview(value.file);
     }
   }, [value]);
+
+  const { value: openCamera, on: onOpenCamera, off: onCloseCamera } = useToggle(false);
 
   return (
     <Dragger
@@ -67,6 +53,7 @@ const UploadFile: FC<UploadFileProps> = ({ value, ...props }) => {
       <div className="ant-upload-hint-mobile">
         Сделайте или загрузите фото. Умный поиск составит коллекцию похожих изображений.
       </div>
+
       {preview && (
         <div className="preview" onClick={(e) => e.stopPropagation()}>
           <Image className="image" width={50} height={50} src={preview} />
@@ -77,10 +64,19 @@ const UploadFile: FC<UploadFileProps> = ({ value, ...props }) => {
         <Row gutter={[8, 8]}>
           {value ? (
             <>
-              <Col sm={12} md={24}>
-                <Button className="button">Изменить файл</Button>
+              <Col xs={24} sm={24} md={12}>
+                <Button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    props.onChange && props.onChange(undefined as any);
+                    setPreview('');
+                  }}
+                  className="button"
+                >
+                  Изменить файл
+                </Button>
               </Col>
-              <Col span={24}>
+              <Col xs={24} sm={24} md={12}>
                 <Button className="button" htmlType="submit" type="primary" onClick={(e) => e.stopPropagation()}>
                   <Flex align="center" gap={8}>
                     Найти
@@ -92,7 +88,13 @@ const UploadFile: FC<UploadFileProps> = ({ value, ...props }) => {
           ) : (
             <>
               <Col xs={24} sm={24} md={12}>
-                <Button className="button" onClick={(e) => e.stopPropagation()}>
+                <Button
+                  className="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onOpenCamera();
+                  }}
+                >
                   <Flex align="center" gap={8}>
                     <CameraIcon />
                     Сделать фото
@@ -110,6 +112,9 @@ const UploadFile: FC<UploadFileProps> = ({ value, ...props }) => {
             </>
           )}
         </Row>
+      </div>
+      <div onClick={(e) => e.stopPropagation()}>
+        <DrawerCamera onPicture={props.onChange} open={openCamera} onClose={onCloseCamera} />
       </div>
     </Dragger>
   );

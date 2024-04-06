@@ -1,9 +1,9 @@
 import { Col, Flex, Form, Row } from 'antd';
 import { useForm, useWatch } from 'antd/es/form/Form';
 import FormItem from 'antd/es/form/FormItem';
-import ImageGrid from '../../shared/components/image-grid/image-grid';
-import SearchToggles from '../../shared/components/search-toggles/search-toggles';
-import UploadFile from '../../shared/ui/upload-file/upload-file';
+import ImageGrid from '@shared/components/image-grid/image-grid';
+import SearchToggles from '@shared/components/search-toggles/search-toggles';
+import UploadImage from '@shared/ui/upload-image/upload-image';
 import './search.styles.scss';
 
 const SearchPhoto = () => {
@@ -41,7 +41,7 @@ const SearchPhoto = () => {
             <SearchToggles />
             <Form className="upload-wrapper" onFinish={console.log} form={form}>
               <FormItem name={'image'}>
-                <UploadFile />
+                <UploadImage />
               </FormItem>
             </Form>
           </Flex>
