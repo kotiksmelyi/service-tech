@@ -4,7 +4,7 @@ import './upload-file.styles.scss';
 
 interface UploadFileProps extends UploadProps {
   buttons?: React.ReactNode[];
-  value?: { file: IUploadFile; fileList: FileList[] };
+  value?: { file: IUploadFile , fileList: FileList[] };
 }
 
 const UploadFile: FC<UploadFileProps> = ({ buttons, value, ...props }) => {
@@ -44,9 +44,9 @@ const UploadFile: FC<UploadFileProps> = ({ buttons, value, ...props }) => {
       <p className="ant-upload-text">Загрузите фотографию</p>
       <p className="ant-upload-hint">Нажмите или перетащите файл в эту область</p>
       {
-        // value && (
-        // <Image src={value} />
-        // )
+        value && (
+        <Image src={value.fileList[0].item.} />
+        )
       }
       {buttons && (
         <div className="ant-upload-buttons">
