@@ -46,7 +46,7 @@ const SearchPhoto = () => {
           <p>Умный поиск составит коллекцию похожих изображений.</p>
         </Col>
       </Row>
-      <ImageGrid data={images} />
+      <ImageGrid images={images} />
     </Flex>
   );
 };
