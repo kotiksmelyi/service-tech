@@ -1,0 +1,11 @@
+@import '../../styles/index.scss';
+
+.grid-collapse {
+    width: 100%;
+    &-header {
+        color: $grey-light;
+        font-family: 'Montserrat';
+        font-size: 20px;
+        cursor: pointer;
+    }
+}

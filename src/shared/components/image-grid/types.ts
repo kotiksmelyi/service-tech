@@ -1,10 +1,3 @@
-export interface ImageGridProps {
-  data: {
-    src: string;
-    width: number;
-    height: number;
-    tags?: { value: string; title: string }[];
-    alt?: string;
-    isSelected?: boolean;
-  }[];
-}
+import { GalleryProps } from "react-grid-gallery";
+
+export interface ImageGridProps extends GalleryProps {}

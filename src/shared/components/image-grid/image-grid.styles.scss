@@ -1,10 +1,9 @@
 .ui-image-grid {
-    margin-top: 8px;
-    .ReactGridGallery_tile-viewport {
-        border-radius: 8px;
-    }
-    // .ReactGridGallery_tile-viewport:hover {
-    //     filter: brightness(0.8);
-    //     transition-duration: 0.4s;
-    // }
+  margin-top: 8px;
+  .ReactGridGallery_tile-viewport {
+    border-radius: 8px;
+  }
+  .ReactGridGallery_tile {
+    background: transparent !important;
+  }
 }
