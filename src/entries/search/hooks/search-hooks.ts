@@ -1,9 +1,9 @@
 import { http } from '@/shared/server/http';
 import { useQuery } from '@tanstack/react-query';
 import { IMAGES_QUERY_KEY, PICTURE_SEARCH_QUERY_KEY, SIMPLE_SEARCH_QUERY_KEY } from '../constants/search-query-keys';
-import { IPageResult } from '@/shared/server/page';
+import { IPageQuery, IPageResult } from '@/shared/server/page';
 
-export const useGetImages = () => {
+export const useGetImages = (query: IPageQuery) => {
   return useQuery({ queryKey: [IMAGES_QUERY_KEY], queryFn: () => http.get<IPageResult<ISearchImage>>('/search') });
 };
 export const useGetSimpleSearch = () => {
