@@ -1,16 +1,18 @@
-import { InfinityScroll } from '@/shared/ui/infinity-scroll';
+import { queryClient } from '@shared/server/queryCLient';
+import { QueryClientProvider } from '@tanstack/react-query';
 import './locale';
 import { AppRouter } from './router';
 import './styles/App.scss';
 import { ThemeProvider } from './theme';
-
 function App() {
   // const { i18n } = useTranslation();
 
   return (
-    <ThemeProvider>
-      <AppRouter />
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider>
+        <AppRouter />
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }
 
