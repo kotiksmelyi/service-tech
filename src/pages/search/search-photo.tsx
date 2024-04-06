@@ -1,11 +1,14 @@
-import { Button, Col, Flex, Input, Row } from 'antd';
+import { Col, Flex, Form, Row } from 'antd';
 import './search.styles.scss';
 import ImageGrid from '../../shared/components/image-grid/image-grid';
 import SearchToggles from '../../shared/components/search-toggles/search-toggles';
 import SearchIcon from '../../shared/assets/icons/search.svg?react';
 import UploadFile from '../../shared/ui/upload-file/upload-file';
+import { Button } from '@/shared/ui/button';
+import { useForm } from 'antd/es/form/Form';
 
 const SearchPhoto = () => {
+  const [form] = useForm();
   const images = [
     {
       src: 'https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg',
@@ -36,12 +39,27 @@ const SearchPhoto = () => {
         <Col xs={24} md={20}>
           <Flex vertical>
             <SearchToggles />
-            <div className="upload-wrapper">
-              <UploadFile />
-            </div>
+            <Form className="upload-wrapper" form={form}>
+              <UploadFile
+                buttons={[
+                  <Button>
+                    <Flex align="center" gap={4}>
+                      Найти
+                      <SearchIcon />
+                    </Flex>
+                  </Button>,
+                  <Button type="primary" onClick={(e) => e.preventDefault()}>
+                    <Flex align="center" gap={4}>
+                      Найти
+                      <SearchIcon />
+                    </Flex>
+                  </Button>,
+                ]}
+              />
+            </Form>
           </Flex>
         </Col>
-        <Col xs={24} md={4} className='upload-hint'>
+        <Col xs={24} md={4} className="upload-hint">
           <p>Сделайте или загрузите фото.</p>
           <p>Умный поиск составит коллекцию похожих изображений.</p>
         </Col>

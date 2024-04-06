@@ -3,7 +3,11 @@ import { FC } from 'react';
 import './upload-file.styles.scss';
 import Button from '../button/button';
 
-const UploadFile: FC<UploadProps> = ({ ...props }) => {
+interface UploadFileProps extends UploadProps {
+  buttons?: React.ReactNode[];
+}
+
+const UploadFile: FC<UploadFileProps> = ({ ...props }) => {
   const { Dragger } = Upload;
 
   //   const props: UploadProps = {
@@ -29,11 +33,7 @@ const UploadFile: FC<UploadProps> = ({ ...props }) => {
     <Dragger {...props} className="ui-upload" maxCount={1} accept="image/png, image/jpeg, image/jpg">
       <p className="ant-upload-text">Загрузите фотографию</p>
       <p className="ant-upload-hint">Нажмите или перетащите файл в эту область</p>
-      {/* TODO: BUTTONS */}
-      <div className="ant-upload-buttons">
-        <Button>ddd</Button>
-        <Button>ddd</Button>
-      </div>
+      <div className="ant-upload-buttons">{props.buttons}</div>
     </Dragger>
   );
 };
