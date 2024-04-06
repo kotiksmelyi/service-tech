@@ -9,6 +9,16 @@
       border-width: 2px;
       border-radius: 0 0 20px 20px;
       text-align: left;
+
+      .preview {
+        margin: 4px 0;
+        .image {
+          border-radius: 12px;
+          object-fit: contain;
+          overflow: hidden;
+        }
+      }
+
       .ant-upload-text {
         font-size: 20px;
         font-weight: 500;
