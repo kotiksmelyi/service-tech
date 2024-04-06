@@ -9,7 +9,7 @@ import { base64ToFile } from '@shared/helpers/base64ToFile';
 interface Props {
   open: boolean;
   onClose: () => void;
-  onPicture: (e: { file: File; fileList: FileList[] }) => void;
+  onPicture?: (e: { file: File; fileList: File[] }) => void;
 }
 export const DrawerCamera: FC<Props> = ({ open, onClose, onPicture }) => {
   const ref = useRef<Webcam | null>(null);
@@ -17,7 +17,7 @@ export const DrawerCamera: FC<Props> = ({ open, onClose, onPicture }) => {
   const takePhoto = async () => {
     const res = ref.current?.getScreenshot();
     const file = await base64ToFile(res || '', 'photo.jpg');
-    onPicture({ file, fileList: [file] });
+    onPicture && onPicture({ file, fileList: [file] });
     onClose();
   };
 

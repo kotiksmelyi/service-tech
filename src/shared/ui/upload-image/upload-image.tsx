@@ -1,13 +1,13 @@
-import { Button } from '@/shared/ui/button';
 import CameraIcon from '@shared/assets/icons/camera-circle.svg?react';
 import SearchIcon from '@shared/assets/icons/search.svg?react';
 import UploadIcon from '@shared/assets/icons/upload.svg?react';
+import { Button } from '@shared/ui/button';
 import { Col, Flex, UploadFile as IUploadFile, Image, Row, Upload, UploadProps } from 'antd';
-import { RcFile } from 'antd/es/upload';
 import { FC, useEffect, useState } from 'react';
 import './upload-image.styles.scss';
 
-import { useToggle } from '@/shared/hooks/use-toggle';
+import { getOriginFile } from '@shared/helpers/getOriginFile';
+import { useToggle } from '@shared/hooks/use-toggle';
 import { DrawerCamera } from '../drawer-camera';
 
 interface UploadFileProps extends UploadProps {
@@ -17,7 +17,7 @@ interface UploadFileProps extends UploadProps {
 const UploadFile: FC<UploadFileProps> = ({ value, ...props }) => {
   const { Dragger } = Upload;
 
-  const getBase64 = (file: RcFile): Promise<string> =>
+  const getBase64 = (file: File): Promise<string> =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
@@ -27,8 +27,7 @@ const UploadFile: FC<UploadFileProps> = ({ value, ...props }) => {
 
   const [preview, setPreview] = useState('');
   const handlePreview = async (file: any) => {
-    const originFile = 'originFileObj' in file ? file.originFileObj : file;
-    const res = await getBase64(originFile);
+    const res = await getBase64(getOriginFile(file));
     setPreview(res as string);
   };
 
@@ -114,7 +113,11 @@ const UploadFile: FC<UploadFileProps> = ({ value, ...props }) => {
         </Row>
       </div>
       <div onClick={(e) => e.stopPropagation()}>
-        <DrawerCamera onPicture={props.onChange} open={openCamera} onClose={onCloseCamera} />
+        <DrawerCamera
+          onPicture={(e) => props.onChange && props.onChange(e as any)}
+          open={openCamera}
+          onClose={onCloseCamera}
+        />
       </div>
     </Dragger>
   );

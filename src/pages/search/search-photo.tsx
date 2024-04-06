@@ -5,33 +5,13 @@ import ImageGrid from '@shared/components/image-grid/image-grid';
 import SearchToggles from '@shared/components/search-toggles/search-toggles';
 import UploadImage from '@shared/ui/upload-image/upload-image';
 import './search.styles.scss';
+import { usePostImages } from '@entities/search';
+import { getOriginFile } from '@shared/helpers/getOriginFile';
+import { BASE_URL } from '@shared/server/http';
 
 const SearchPhoto = () => {
   const [form] = useForm();
-
-  const images = [
-    {
-      src: 'https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg',
-      width: 320,
-      height: 174,
-      caption: 'After Rain (Jeshu John - designerspics.com)',
-    },
-    {
-      src: 'https://c2.staticflickr.com/9/8356/28897120681_3b2c0f43e0_b.jpg',
-      width: 320,
-      height: 212,
-      //   tags: [
-      //     { value: 'Ocean', title: 'Ocean' },
-      //     { value: 'People', title: 'People' },
-      //   ],
-      alt: 'Boats (Jeshu John - designerspics.com)',
-    },
-    {
-      src: 'https://c4.staticflickr.com/9/8887/28897124891_98c4fdd82b_b.jpg',
-      width: 320,
-      height: 212,
-    },
-  ];
+  const { mutate, data: images } = usePostImages({ page: 1, size: 50 });
 
   return (
     <Flex vertical>
@@ -39,7 +19,13 @@ const SearchPhoto = () => {
         <Col xs={24} md={20}>
           <Flex vertical>
             <SearchToggles />
-            <Form className="upload-wrapper" onFinish={console.log} form={form}>
+            <Form
+              className="upload-wrapper"
+              onFinish={(values) => {
+                mutate({ file: getOriginFile(values.image.file) });
+              }}
+              form={form}
+            >
               <FormItem name={'image'}>
                 <UploadImage />
               </FormItem>
@@ -51,7 +37,9 @@ const SearchPhoto = () => {
           <p>Умный поиск составит коллекцию похожих изображений.</p>
         </Col>
       </Row>
-      <ImageGrid images={images} />
+      <ImageGrid
+        images={images?.data.items.map((image) => ({ ...image, src: `${BASE_URL}/${image.image}`, isSelected: false }))}
+      />
     </Flex>
   );
 };
