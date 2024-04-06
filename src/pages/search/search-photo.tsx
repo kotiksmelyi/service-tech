@@ -35,8 +35,6 @@ const SearchPhoto = () => {
     },
   ];
 
-  const file = useWatch(['query'], form);
-
   return (
     <Flex vertical>
       <Row gutter={8}>

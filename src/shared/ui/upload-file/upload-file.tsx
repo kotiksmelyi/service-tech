@@ -1,4 +1,4 @@
-import { Upload, Image, UploadFile as IUploadFile, UploadProps } from 'antd';
+import { Upload, Image, UploadFile as IUploadFile, UploadProps, Spin } from 'antd';
 import { FC, Fragment, useEffect, useState } from 'react';
 import './upload-file.styles.scss';
 import { RcFile } from 'antd/es/upload';
@@ -61,6 +61,7 @@ const UploadFile: FC<UploadFileProps> = ({ buttons, value, ...props }) => {
     >
       <p className="ant-upload-text">Загрузите фотографию</p>
       <p className="ant-upload-hint">Нажмите или перетащите файл в эту область</p>
+      {value?.file.status === 'uploading' && <Spin />}
       {preview && (
         <div className="preview" onClick={(e) => e.stopPropagation()}>
           <Image className="image" width={50} height={50} src={preview} />
