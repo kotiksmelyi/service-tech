@@ -1,0 +1,27 @@
+@import '../../styles/index.scss';
+
+.mock-header {
+  background: $black;
+  padding: 0 3%;
+  ul {
+    list-style: none;
+    gap: 4px;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    color: $black-light;
+    margin-top: 16px;
+    margin-bottom: 24px;
+  }
+  li {
+    font-size: 12px;
+  }
+  h4 {
+    color: $grey-light;
+    margin-bottom: 16px;
+  }
+  p {
+    color: $grey;
+    max-width: 750px;
+  }
+}

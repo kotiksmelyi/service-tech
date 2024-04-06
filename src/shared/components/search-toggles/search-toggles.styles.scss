@@ -1,0 +1,35 @@
+@import '../../styles/index.scss';
+
+.search-toggles {
+  &.ant-segmented {
+    padding: 0;
+  }
+  .ant-segmented-item {
+    display: flex;
+    justify-content: center;
+    border-radius: 20px 20px 0 0;
+    border: solid 1px $yellow;
+    width: 100%;
+    padding: 6px 0;
+  }
+  .ant-segmented-item-label {
+    font-weight: 500;
+    font-size: 16px;
+    svg {
+      width: 20px;
+      margin-right: 8px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .search-toggles {
+    .ant-segmented-item-label {
+      font-size: 14px;
+      svg {
+        width: 14px;
+        margin-right: 6px;
+      }
+    }
+  }
+}

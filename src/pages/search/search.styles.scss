@@ -1,0 +1,23 @@
+@import '../../shared/styles/index.scss';
+
+.search-layout-content {
+    background-color: $grey-light;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    border-radius: 40px 40px 0 0;
+    margin-top: 24px;
+    padding: 24px 3%;
+}
+
+.search-buttons {
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+}
+
+@media (max-width: 768px) {
+    .search-layout-content {
+        border-radius: 20px 20px 0 0;
+    }
+}
