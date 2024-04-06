@@ -1,10 +1,12 @@
-import { Col, Flex, Row } from 'antd';
+import { Button } from '@shared/ui/button';
+import { Col, Flex, Row, Space } from 'antd';
+import SearchIcon from '@shared/assets/icons/search.svg?react';
+import FilterIcon from '@shared/assets/icons/filter.svg?react';
+import ImageGrid from '@shared/components/image-grid/image-grid';
+import SearchToggles from '@shared/components/search-toggles/search-toggles';
+
+import Input from '@shared/ui/input/input';
 import './search.styles.scss';
-import Input from '../../shared/ui/input/input';
-import SearchIcon from '../../shared/assets/icons/search.svg?react';
-import ImageGrid from '../../shared/components/image-grid/image-grid';
-import SearchToggles from '../../shared/components/search-toggles/search-toggles';
-import Button from '../../shared/ui/button/button';
 
 const SimpleSearch = () => {
   const images = [
@@ -41,10 +43,24 @@ const SimpleSearch = () => {
           </Flex>
         </Col>
         <Col xs={24} sm={4}>
-          <Flex className='search-buttons'>
-            <Button block>Найти</Button>
-            <Button block>Фильтры</Button>
-          </Flex>
+          <Row gutter={[8, 8]} className="search-buttons">
+            <Col xs={24} md={24} lg={12}>
+              <Button block>
+                <Space>
+                  Фильтры
+                  <FilterIcon />
+                </Space>
+              </Button>
+            </Col>
+            <Col xs={24} md={24} lg={12}>
+              <Button block type="primary">
+                <Space>
+                  Найти
+                  <SearchIcon />
+                </Space>
+              </Button>
+            </Col>
+          </Row>
         </Col>
       </Row>
       <ImageGrid data={images} />

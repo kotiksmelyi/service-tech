@@ -1,14 +1,14 @@
-import { AppRouter } from './router';
 import './locale';
-import './styles/App.scss'
+import { AppRouter } from './router';
+import './styles/App.scss';
 import { ThemeProvider } from './theme';
 
 function App() {
   // const { i18n } = useTranslation();
   return (
-      <ThemeProvider>
-        <AppRouter />
-      </ThemeProvider>
+    <ThemeProvider>
+      <AppRouter />
+    </ThemeProvider>
   );
 }
 
