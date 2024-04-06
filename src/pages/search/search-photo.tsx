@@ -3,6 +3,7 @@ import './search.styles.scss';
 import ImageGrid from '../../shared/components/image-grid/image-grid';
 import SearchToggles from '../../shared/components/search-toggles/search-toggles';
 import SearchIcon from '../../shared/assets/icons/search.svg?react';
+import UploadFile from '../../shared/ui/upload-file/upload-file';
 
 const SearchPhoto = () => {
   const images = [
@@ -32,17 +33,17 @@ const SearchPhoto = () => {
   return (
     <Flex vertical>
       <Row gutter={8}>
-        <Col xs={24} sm={20}>
+        <Col xs={24} md={20}>
           <Flex vertical>
             <SearchToggles />
-            комп с перетаскиванием
+            <div className="upload-wrapper">
+              <UploadFile />
+            </div>
           </Flex>
         </Col>
-        <Col xs={24} sm={4}>
-          <Flex className="search-buttons">
-            <Button block>Найти</Button>
-            <Button block>Фильтры</Button>
-          </Flex>
+        <Col xs={24} md={4} className='upload-hint'>
+          <p>Сделайте или загрузите фото.</p>
+          <p>Умный поиск составит коллекцию похожих изображений.</p>
         </Col>
       </Row>
       <ImageGrid data={images} />

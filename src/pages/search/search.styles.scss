@@ -16,8 +16,19 @@
     height: 100%;
 }
 
+.upload-hint {
+    color: $black-light;
+    margin-top: 32px;
+}
+
 @media (max-width: 768px) {
     .search-layout-content {
         border-radius: 20px 20px 0 0;
+    }
+    .upload-hint {
+        margin-top: 4px;
+        p {
+            margin: 2px;
+        }
     }
 }
