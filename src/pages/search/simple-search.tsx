@@ -43,8 +43,8 @@ const SimpleSearch = () => {
           </Flex>
         </Col>
         <Col xs={24} sm={4}>
-          <Row gutter={[8, 8]} className="search-buttons">
-            <Col xs={24} md={24} lg={12}>
+          <Row gutter={[8, 2]} className="search-buttons">
+            <Col xs={24} md={24}>
               <Button block>
                 <Space>
                   Фильтры
@@ -52,7 +52,7 @@ const SimpleSearch = () => {
                 </Space>
               </Button>
             </Col>
-            <Col xs={24} md={24} lg={12}>
+            <Col xs={24} md={24}>
               <Button block type="primary">
                 <Space>
                   Найти
