@@ -13,7 +13,7 @@ const ImageGrid: FC<ImageGridProps> = ({ data }) => {
 
   return (
     <div className="ui-image-grid">
-      <Gallery images={images} onSelect={handleSelect} />
+      <Gallery  images={images} onSelect={handleSelect} />
     </div>
   );
 };

@@ -45,7 +45,7 @@ const SimpleSearch = () => {
         <Col xs={24} sm={4}>
           <Row gutter={[8, 2]} className="search-buttons">
             <Col xs={24} md={24}>
-              <Button block>
+              <Button className="button" block>
                 <Space>
                   Фильтры
                   <FilterIcon />
@@ -53,7 +53,7 @@ const SimpleSearch = () => {
               </Button>
             </Col>
             <Col xs={24} md={24}>
-              <Button block type="primary">
+              <Button className="button" block type="primary">
                 <Space>
                   Найти
                   <SearchIcon />

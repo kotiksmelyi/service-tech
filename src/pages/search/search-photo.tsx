@@ -5,10 +5,12 @@ import SearchToggles from '../../shared/components/search-toggles/search-toggles
 import SearchIcon from '../../shared/assets/icons/search.svg?react';
 import UploadFile from '../../shared/ui/upload-file/upload-file';
 import { Button } from '@/shared/ui/button';
-import { useForm } from 'antd/es/form/Form';
+import { useForm, useWatch } from 'antd/es/form/Form';
+import FormItem from 'antd/es/form/FormItem';
 
 const SearchPhoto = () => {
   const [form] = useForm();
+
   const images = [
     {
       src: 'https://c2.staticflickr.com/9/8817/28973449265_07e3aa5d2e_b.jpg',
@@ -33,6 +35,8 @@ const SearchPhoto = () => {
     },
   ];
 
+  const file = useWatch(['query'], form);
+
   return (
     <Flex vertical>
       <Row gutter={8}>
@@ -40,22 +44,19 @@ const SearchPhoto = () => {
           <Flex vertical>
             <SearchToggles />
             <Form className="upload-wrapper" form={form}>
-              <UploadFile
-                buttons={[
-                  <Button>
-                    <Flex align="center" gap={4}>
-                      Найти
-                      <SearchIcon />
-                    </Flex>
-                  </Button>,
-                  <Button type="primary" onClick={(e) => e.preventDefault()}>
-                    <Flex align="center" gap={4}>
-                      Найти
-                      <SearchIcon />
-                    </Flex>
-                  </Button>,
-                ]}
-              />
+              <FormItem name={'query'}>
+                <UploadFile
+                  buttons={[
+                    <Button>Изменить файл</Button>,
+                    <Button type="primary" onClick={(e) => e.stopPropagation()}>
+                      <Flex align="center" gap={8}>
+                        Найти
+                        <SearchIcon />
+                      </Flex>
+                    </Button>,
+                  ]}
+                />
+              </FormItem>
             </Form>
           </Flex>
         </Col>
