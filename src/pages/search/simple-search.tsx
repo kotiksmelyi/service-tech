@@ -35,35 +35,29 @@ const SimpleSearch = () => {
 
   return (
     <Flex vertical>
-      <Row gutter={8}>
-        <Col xs={24} sm={20}>
-          <Flex vertical>
-            <SearchToggles />
-            <Input prefix={<SearchIcon />} placeholder="Введите запрос, название или #тег" />
-          </Flex>
-        </Col>
-        <Col xs={24} sm={4}>
-          <Row gutter={[8, 2]} className="search-buttons">
-            <Col xs={24} md={24}>
-              <Button className="button" block>
-                <Space>
-                  Фильтры
-                  <FilterIcon />
-                </Space>
-              </Button>
-            </Col>
-            <Col xs={24} md={24}>
-              <Button className="button" block type="primary">
-                <Space>
-                  Найти
-                  <SearchIcon />
-                </Space>
-              </Button>
-            </Col>
-          </Row>
-        </Col>
-      </Row>
-      <ImageGrid data={images} />
+      <Flex gap={8} justify='space-between' wrap='wrap'>
+        <Flex vertical className='search-toggles-container'>
+          <SearchToggles />
+          <Input prefix={<SearchIcon />} placeholder="Введите запрос, название или #тег" />
+        </Flex>
+
+        <Flex gap={8} className="search-buttons" align='end'>
+          <Button className="button" block>
+            <Flex gap={4} align='center'>
+              Фильтры
+              <FilterIcon />
+            </Flex>
+          </Button>
+
+          <Button className="button" block type="primary">
+            <Flex gap={4} align='center'>
+              Найти
+              <SearchIcon />
+            </Flex>
+          </Button>
+        </Flex>
+      </Flex>
+      <ImageGrid images={images} />
     </Flex>
   );
 };
