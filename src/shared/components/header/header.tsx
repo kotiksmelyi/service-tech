@@ -1,10 +1,11 @@
-import { Dropdown, Flex, Layout, Select } from 'antd';
-import Logo from '../../assets/icons/logo.svg?react';
-import { Link } from 'react-router-dom';
-import './header.styles.scss';
-import HeaderSvg from '../../assets/mock-images/header.svg?react';
+import EnglishFlag from '@shared/assets/flags/english.png';
 import RussianFlag from '@shared/assets/flags/russian.png';
 import { LanguageItem } from '@shared/ui/language/language-item';
+import { Dropdown, Flex, Layout, Space } from 'antd';
+import { Link } from 'react-router-dom';
+import Logo from '../../assets/icons/logo.svg?react';
+import HeaderSvg from '../../assets/mock-images/header.svg?react';
+import './header.styles.scss';
 
 const Header = () => {
   return (
@@ -13,18 +14,20 @@ const Header = () => {
         <Link to={'/'} className="header-logo">
           <Logo />
         </Link>
-        {/* <Dropdown
+        <Dropdown
           menu={{
             items: [
               { key: '1', label: <LanguageItem flag={RussianFlag} name="РУС" /> },
-              { key: '2', label: '2' },
+              { key: '2', label: <LanguageItem flag={EnglishFlag} name="ENG" /> },
             ],
           }}
           placement="bottomLeft"
-          arrow={{ pointAtCenter: true }}
+          // arrow={{ pointAtCenter: true }}
         >
-          <LanguageItem flag={RussianFlag} name="РУС" />
-        </Dropdown> */}
+          <a onClick={(e) => e.preventDefault()}>
+            <LanguageItem flag={RussianFlag} name="РУС" />
+          </a>
+        </Dropdown>
 
         {/* TODO: lang switch component */}
         <HeaderSvg />

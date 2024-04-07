@@ -1,6 +1,8 @@
+@import '@shared/styles';
 
 .language {
   min-width: 100px;
+  color: $black;
   &-item {
     display: flex;
     align-items: center;
