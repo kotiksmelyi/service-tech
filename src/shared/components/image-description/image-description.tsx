@@ -4,6 +4,7 @@ import './image-description.styles.scss';
 import { Button } from '@shared/ui/button';
 import DownloadButton from '../../assets/icons/download.svg?react';
 import Tag from '@shared/ui/tag/tag';
+import { useTranslation } from 'react-i18next';
 
 type ImageDescriptionProps = {
   name: string;
@@ -15,6 +16,7 @@ type ImageDescriptionProps = {
 };
 
 const ImageDescription: FC<ImageDescriptionProps> = ({ ...props }) => {
+  const { t } = useTranslation();
   // TODO: type
   const download = (src: string) => {
     fetch(src, {
@@ -42,9 +44,8 @@ const ImageDescription: FC<ImageDescriptionProps> = ({ ...props }) => {
     <Flex className="image-description" justify="space-between">
       <Flex vertical>
         <h5>
-          Видео{' '}
           <span>
-            {props.format}, {props.height}x{props.width}
+            {props.name}.{props.format}, {props.height}x{props.width}
           </span>
         </h5>
         <Flex gap={4}>
@@ -54,7 +55,7 @@ const ImageDescription: FC<ImageDescriptionProps> = ({ ...props }) => {
         </Flex>
       </Flex>
       <Button className="download-button" onClick={(e) => download(props.src)}>
-        Загрузить
+        {t('Download')}
         <DownloadButton />
       </Button>
     </Flex>

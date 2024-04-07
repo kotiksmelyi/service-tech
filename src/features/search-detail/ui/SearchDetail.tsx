@@ -5,9 +5,11 @@ import GridCollapse from '@shared/components/grid-collapse/grid-collapse';
 import { useSearchDetail } from '@entities/search/hooks/search-hooks';
 import { Navigate, useParams } from 'react-router-dom';
 import { BASE_URL } from '@shared/server/http';
+import { useTranslation } from 'react-i18next';
 export const SearchDetail = () => {
   const { id } = useParams();
   const { data } = useSearchDetail(Number(id));
+  const { t } = useTranslation();
 
   if (!id) return <Navigate to="/" />;
 
@@ -31,9 +33,9 @@ export const SearchDetail = () => {
 
           <GridCollapse
             images={data.data.similar.map((e) => ({ ...e, src: `${BASE_URL}/${e.image}`, isSelected: false })) || []}
-            text={'Похожие фото'}
+            text={t('Similar photos')}
           />
-          <GridCollapse images={[]} text={'Места рядом'} />
+          <GridCollapse images={[]} text={t('Places nearby')} />
         </Flex>
       </div>
     </div>

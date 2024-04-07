@@ -3,10 +3,12 @@ import SearchIcon from '../../assets/icons/search.svg?react';
 import SearchPhoto from '../../assets/icons/camera.svg?react';
 import './search-toggles.styles.scss';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const SearchToggles = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useTranslation();
   return (
     <Segmented
       onChange={(value) => navigate(value)}
@@ -18,7 +20,7 @@ const SearchToggles = () => {
           label: (
             <Flex align="center" justify="center">
               <SearchIcon />
-              Простой поиск
+              {t('Simple search')}
             </Flex>
           ),
           value: '/',
@@ -27,7 +29,7 @@ const SearchToggles = () => {
           label: (
             <Flex align="center" justify="center">
               <SearchPhoto />
-              Поиск по фото
+              {t('Search by photo')}
             </Flex>
           ),
           value: '/photo-search',

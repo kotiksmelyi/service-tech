@@ -9,14 +9,16 @@ import './upload-image.styles.scss';
 import { getOriginFile } from '@shared/helpers/getOriginFile';
 import { useToggle } from '@shared/hooks/use-toggle';
 import { DrawerCamera } from '../drawer-camera';
+import { useTranslation } from 'react-i18next';
 
 interface UploadFileProps extends UploadProps {
   value?: { file: IUploadFile; fileList: FileList };
-  isLoading?: boolean
+  isLoading?: boolean;
 }
 
 const UploadFile: FC<UploadFileProps> = ({ value, isLoading, ...props }) => {
   const { Dragger } = Upload;
+  const { t } = useTranslation();
 
   const getBase64 = (file: File): Promise<string> =>
     new Promise((resolve, reject) => {
@@ -48,8 +50,8 @@ const UploadFile: FC<UploadFileProps> = ({ value, isLoading, ...props }) => {
       maxCount={1}
       accept="image/png, image/jpeg, image/jpg"
     >
-      <p className="ant-upload-text">Загрузите фотографию</p>
-      <p className="ant-upload-hint">Нажмите или перетащите файл в эту область</p>
+      <p className="ant-upload-text">{t('Upload photo')}</p>
+      <p className="ant-upload-hint">{t('Click or drag file to this area')}</p>
       <div className="ant-upload-hint-mobile">
         Сделайте или загрузите фото. Умный поиск составит коллекцию похожих изображений.
       </div>
@@ -73,13 +75,19 @@ const UploadFile: FC<UploadFileProps> = ({ value, isLoading, ...props }) => {
                   }}
                   className="button"
                 >
-                  Изменить файл
+                  {t('Change file')}
                 </Button>
               </Col>
               <Col xs={24} sm={24} md={12}>
-                <Button className="button" htmlType="submit" type="primary" onClick={(e) => e.stopPropagation()} loading={isLoading}>
+                <Button
+                  className="button"
+                  htmlType="submit"
+                  type="primary"
+                  onClick={(e) => e.stopPropagation()}
+                  loading={isLoading}
+                >
                   <Flex align="center" gap={8}>
-                    Найти
+                    {t('Search')}
                     <SearchIcon />
                   </Flex>
                 </Button>
@@ -97,7 +105,7 @@ const UploadFile: FC<UploadFileProps> = ({ value, isLoading, ...props }) => {
                 >
                   <Flex align="center" gap={8}>
                     <CameraIcon />
-                    Сделать фото
+                    {t('Take a photo')}
                   </Flex>
                 </Button>
               </Col>
@@ -105,7 +113,7 @@ const UploadFile: FC<UploadFileProps> = ({ value, isLoading, ...props }) => {
                 <Button className="button">
                   <Flex align="center" gap={8}>
                     <UploadIcon />
-                    Загрузить фото
+                    {t('Upload a photo')}
                   </Flex>
                 </Button>
               </Col>

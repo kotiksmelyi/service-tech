@@ -1,21 +1,20 @@
 import { Flex } from 'antd';
 import './mock-header.styles.scss';
+import { useTranslation } from 'react-i18next';
 
 const MockHeader = () => {
+  const { t } = useTranslation();
   return (
     <Flex vertical className="mock-header">
       <ul>
-        <li>Главная</li>
+        <li>{t('Home')}</li>
         <li>●</li>
-        <li>Проекты</li>
+        <li>{t('Projects')}</li>
         <li>●</li>
-        <li>Фотобанк</li>
+        <li>{t('Photobank')}</li>
       </ul>
-      <h4>Фотографии</h4>
-      <p className='paragraph'>
-        Наш портал предлагает огромный выбор фотографий высокого качества, подходящих для любых проектов. Найдите
-        идеальное изображение для вашего сайта или рекламной кампании с нами.
-      </p>
+      <h4>{t('Photos')}</h4>
+      <p className="paragraph">{t('About detail')}</p>
     </Flex>
   );
 };

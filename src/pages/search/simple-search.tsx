@@ -10,12 +10,13 @@ import { Flex, Form } from 'antd';
 import { useForm, useWatch } from 'antd/es/form/Form';
 import FormItem from 'antd/es/form/FormItem';
 import './search.styles.scss';
+import { useTranslation } from 'react-i18next';
 
 const SimpleSearch = () => {
   const [form] = useForm();
   const searchText = useWatch('text', form);
   const { data, isLoading, refetch } = useSimpleSearch({ params: { text: searchText } });
-
+  const { t } = useTranslation();
   return (
     <Form form={form} onFinish={refetch} className="search-form">
       <Flex vertical>
@@ -23,21 +24,21 @@ const SimpleSearch = () => {
           <Flex vertical className="search-toggles-container">
             <SearchToggles />
             <FormItem name={'text'}>
-              <Input prefix={<SearchIcon />} placeholder="Введите запрос, название или #тег" />
+              <Input prefix={<SearchIcon />} placeholder={t('Enter a query, name, or #tag')} />
             </FormItem>
           </Flex>
 
           <Flex gap={8} className="search-buttons" align="end">
             <Button className="button" block>
               <Flex gap={4} align="center">
-                Фильтры
+                {t('Filters')}
                 <FilterIcon />
               </Flex>
             </Button>
 
             <Button htmlType="submit" className="button" block type="primary" loading={isLoading}>
               <Flex gap={4} align="center">
-                Найти
+                {t('Search')}
                 <SearchIcon />
               </Flex>
             </Button>

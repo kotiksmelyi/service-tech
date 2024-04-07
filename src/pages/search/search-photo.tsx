@@ -8,11 +8,12 @@ import './search.styles.scss';
 import { getOriginFile } from '@shared/helpers/getOriginFile';
 import { BASE_URL } from '@shared/server/http';
 import { useImageSearch } from '@entities/search/hooks/search-hooks';
+import { useTranslation } from 'react-i18next';
 
 const SearchPhoto = () => {
   const [form] = useForm();
   const { mutate, data: images, status } = useImageSearch({ page: 1, size: 30 });
-
+  const { t } = useTranslation();
   return (
     <Flex vertical>
       <Row gutter={8}>
@@ -33,8 +34,8 @@ const SearchPhoto = () => {
           </Flex>
         </Col>
         <Col xs={24} md={4} className="upload-hint">
-          <p>Сделайте или загрузите фото.</p>
-          <p>Умный поиск составит коллекцию похожих изображений.</p>
+          <p>{t('Take or upload a photo.')}</p>
+          <p>{t('A smart search will create a collection of similar images.')}</p>
         </Col>
       </Row>
       {images?.data?.items && (
