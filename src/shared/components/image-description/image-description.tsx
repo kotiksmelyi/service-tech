@@ -16,9 +16,13 @@ type ImageDescriptionProps = {
 
 const ImageDescription: FC<ImageDescriptionProps> = ({ ...props }) => {
   // TODO: type
-  const download = (e: any) => {
-    fetch(e.target.href, {
+  const download = (e: string) => {
+    console.log(e);
+    fetch(e, {
       method: 'GET',
+      headers: {
+        'Content-Type': 'application/pdf',
+      },
     })
       .then((response) => {
         response.arrayBuffer().then(function (buffer) {
@@ -50,7 +54,7 @@ const ImageDescription: FC<ImageDescriptionProps> = ({ ...props }) => {
           ))}
         </Flex>
       </Flex>
-      <Button className="download-button" onClick={(e) => download(e)}>
+      <Button className="download-button" onClick={(e) => download(props.src)}>
         Загрузить
         <DownloadButton />
       </Button>
