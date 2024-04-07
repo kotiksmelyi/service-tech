@@ -11,12 +11,19 @@ import './header.styles.scss';
 const Header = () => {
   const { i18n } = useTranslation();
 
-  const languageItems = {
-    ru: <LanguageItem onClick={() => i18n.changeLanguage('ru')} flag={RussianFlag} name="РУС" />,
-    en: <LanguageItem onClick={() => i18n.changeLanguage('en')} flag={EnglishFlag} name="ENG" />,
-  };
+  const languageItems = [
+    {
+      id: 'ru-RU',
+      item: <LanguageItem onClick={() => i18n.changeLanguage('ru-RU')} flag={RussianFlag} name="РУС" />,
+    },
+    {
+      id: 'en-US',
+      item: <LanguageItem onClick={() => i18n.changeLanguage('en-US')} flag={EnglishFlag} name="ENG" />,
+    },
+  ];
 
-  const currentLanguage = i18n.language as keyof typeof languageItems;
+  const currentLanguageName = i18n.language as keyof typeof languageItems;
+  const currentLanguage = languageItems.find((i) => i.id === currentLanguageName)?.item;
   return (
     <Layout.Header className="ui-header">
       <Flex align="center" justify="space-between" className="h-100">
@@ -26,13 +33,13 @@ const Header = () => {
         <div className="language">
           <Dropdown
             menu={{
-              items: Object.entries(languageItems)
-                .map(([key, label]) => ({ key, label }))
-                .filter((i) => i.key !== i18n.language),
+              items: languageItems
+                .filter((i) => i.id !== currentLanguageName)
+                .map((i) => ({ key: i.id, label: i.item })),
             }}
             placement="bottomLeft"
           >
-            <a onClick={(e) => e.preventDefault()}>{languageItems[currentLanguage || 'ru']}</a>
+            <a onClick={(e) => e.preventDefault()}>{currentLanguage || languageItems[0].item}</a>
           </Dropdown>
         </div>
 
