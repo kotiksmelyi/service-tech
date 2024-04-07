@@ -25,7 +25,7 @@ const ImageDescription: FC<ImageDescriptionProps> = ({ ...props }) => {
           const url = window.URL.createObjectURL(new Blob([buffer]));
           const link = document.createElement('a');
           link.href = url;
-          link.setAttribute('download', `${props.name}.${props.format}`);
+          link.setAttribute('download', `${props.name}`);
           document.body.appendChild(link);
           link.click();
         });
@@ -46,8 +46,7 @@ const ImageDescription: FC<ImageDescriptionProps> = ({ ...props }) => {
         </h5>
         <Flex gap={4}>
           {props.tags?.map((tag) => (
-            <Tag name={`#${tag.title}`}>
-            </Tag>
+            <Tag name={`#${tag.title}`}></Tag>
           ))}
         </Flex>
       </Flex>

@@ -27,7 +27,7 @@ const ImageGrid: FC<ImageGridProps> = ({ images, ...props }) => {
     //TODO ТИПЫ ДЛЯ КАРТИНКИ (ДОБАВИТЬ id, name и всё, что с бэка приходит, я хз как, но добавить)
 
     return (
-      <div className="ui-image-grid-item">
+      <div onClick={() => navigate(`/${props.item.id}`)} className="ui-image-grid-item">
         <div className="ui-image-grid-item-overlay">
           <Flex vertical justify="space-between">
             <Flex gap={8}>
@@ -42,7 +42,6 @@ const ImageGrid: FC<ImageGridProps> = ({ images, ...props }) => {
           </Flex>
         </div>
         <LazyLoadImage
-          onClick={() => navigate(`/${props.item.id}`)}
           {...imageProps}
           height={imageProps.style.height}
           width={imageProps.style.width}
