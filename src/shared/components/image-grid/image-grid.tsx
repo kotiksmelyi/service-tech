@@ -7,6 +7,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import { useNavigate } from 'react-router-dom';
 import { Checkbox, Flex } from 'antd';
 import Tag from '@shared/ui/tag/tag';
+import classNames from 'classnames';
 
 const ImageGrid: FC<ImageGridProps> = ({ images, ...props }) => {
   const [selectedImages, setSelectedImages] = useState(images);
@@ -29,8 +30,7 @@ const ImageGrid: FC<ImageGridProps> = ({ images, ...props }) => {
         <div className="ui-image-grid-item-overlay">
           <Flex vertical justify="space-between">
             <Flex gap={8}>
-              <Checkbox checked={props.item.isSelected} onChange={() => handleSelect(props.index)}></Checkbox>
-              <h5>{props.item.name}</h5>
+              <h5 className={'ui-image-grid-item-title'}>{props.item.name}</h5>
             </Flex>
             <Flex>
               {props.item?.tags?.map((e) => (
