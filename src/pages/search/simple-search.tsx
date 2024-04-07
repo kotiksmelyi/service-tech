@@ -13,7 +13,7 @@ import './search.styles.scss';
 
 const SimpleSearch = () => {
   const [form] = useForm();
-  const searchText = useWatch('text');
+  const searchText = useWatch('text', form);
   const { data, isLoading, refetch } = useSimpleSearch({ params: { text: searchText } });
 
   return (
@@ -22,7 +22,7 @@ const SimpleSearch = () => {
         <Flex gap={8} justify="space-between" wrap="wrap">
           <Flex vertical className="search-toggles-container">
             <SearchToggles />
-            <FormItem>
+            <FormItem name={'text'}>
               <Input prefix={<SearchIcon />} placeholder="Введите запрос, название или #тег" />
             </FormItem>
           </Flex>
