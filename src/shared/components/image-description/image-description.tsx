@@ -16,12 +16,11 @@ type ImageDescriptionProps = {
 
 const ImageDescription: FC<ImageDescriptionProps> = ({ ...props }) => {
   // TODO: type
-  const download = (e: string) => {
-    console.log(e);
-    fetch(e, {
+  const download = (src: string) => {
+    fetch(src, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/pdf',
+        'Content-Type': 'application/image',
       },
     })
       .then((response) => {
