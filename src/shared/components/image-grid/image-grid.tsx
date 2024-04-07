@@ -24,8 +24,6 @@ const ImageGrid: FC<ImageGridProps> = ({ images, ...props }) => {
     const { imageProps } = props;
     const navigate = useNavigate();
 
-    //TODO ТИПЫ ДЛЯ КАРТИНКИ (ДОБАВИТЬ id, name и всё, что с бэка приходит, я хз как, но добавить)
-
     return (
       <div onClick={() => navigate(`/${props.item.id}`)} className="ui-image-grid-item">
         <div className="ui-image-grid-item-overlay">

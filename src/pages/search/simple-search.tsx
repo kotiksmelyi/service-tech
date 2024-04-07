@@ -17,7 +17,7 @@ const SimpleSearch = () => {
   const { data, isLoading, refetch } = useSimpleSearch({ params: { text: searchText } });
 
   return (
-    <Form form={form} onFinish={refetch}>
+    <Form form={form} onFinish={refetch} className="search-form">
       <Flex vertical>
         <Flex gap={8} justify="space-between" wrap="wrap">
           <Flex vertical className="search-toggles-container">
