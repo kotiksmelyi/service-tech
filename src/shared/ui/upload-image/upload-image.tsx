@@ -12,9 +12,10 @@ import { DrawerCamera } from '../drawer-camera';
 
 interface UploadFileProps extends UploadProps {
   value?: { file: IUploadFile; fileList: FileList };
+  isLoading?: boolean
 }
 
-const UploadFile: FC<UploadFileProps> = ({ value, ...props }) => {
+const UploadFile: FC<UploadFileProps> = ({ value, isLoading, ...props }) => {
   const { Dragger } = Upload;
 
   const getBase64 = (file: File): Promise<string> =>
@@ -76,7 +77,7 @@ const UploadFile: FC<UploadFileProps> = ({ value, ...props }) => {
                 </Button>
               </Col>
               <Col xs={24} sm={24} md={12}>
-                <Button className="button" htmlType="submit" type="primary" onClick={(e) => e.stopPropagation()}>
+                <Button className="button" htmlType="submit" type="primary" onClick={(e) => e.stopPropagation()} loading={isLoading}>
                   <Flex align="center" gap={8}>
                     Найти
                     <SearchIcon />

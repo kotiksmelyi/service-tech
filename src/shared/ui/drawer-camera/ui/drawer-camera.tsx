@@ -1,7 +1,7 @@
 import { Button } from '@shared/ui/button';
 import { Drawer } from 'antd';
 import cn from 'classnames';
-import { FC, useRef } from 'react';
+import { FC, useEffect, useRef } from 'react';
 import Webcam from 'react-webcam';
 import './drawer-camera.styles.scss';
 import { base64ToFile } from '@shared/helpers/base64ToFile';
@@ -21,6 +21,12 @@ export const DrawerCamera: FC<Props> = ({ open, onClose, onPicture }) => {
     onClose();
   };
 
+  useEffect(() => {
+    return () => {
+      ref.current?.stream?.getTracks().forEach((track) => track.stop());
+    };
+  }, [open]);
+
   return (
     <Drawer size="large" placement={'bottom'} onClose={onClose} open={open} className={cn('drawer-camera')}>
       <div className="camera-wrapper">
@@ -28,6 +34,7 @@ export const DrawerCamera: FC<Props> = ({ open, onClose, onPicture }) => {
         <Button
           onClick={() => {
             takePhoto();
+            ref.current?.stream?.getTracks().forEach((track) => track.stop());
           }}
           className="take-picture"
           type="primary"

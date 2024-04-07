@@ -1,5 +1,5 @@
-import { Collapse, CollapseProps, Flex } from 'antd';
-import { FC, useState, version } from 'react';
+import { Flex } from 'antd';
+import { FC, useState } from 'react';
 import ImageGrid from '../image-grid/image-grid';
 import { ImageGridProps } from '../image-grid/types';
 import './grid-collapse.styles.scss'

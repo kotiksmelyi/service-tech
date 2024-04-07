@@ -9,7 +9,7 @@ const MockHeader = () => {
         <li>●</li>
         <li>Проекты</li>
         <li>●</li>
-        <li>Moscow Travel Hub</li>
+        <li>Фотобанк</li>
       </ul>
       <h4>Фотографии</h4>
       <p className='paragraph'>
