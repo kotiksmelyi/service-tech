@@ -1,0 +1,16 @@
+@import '../../styles/index.scss';
+
+.grid-collapse {
+  width: 100%;
+  font-family: 'Montserrat';
+  color: $grey-light;
+
+  .distance {
+    font-size: 12px;
+    margin: 0 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+  }
+}

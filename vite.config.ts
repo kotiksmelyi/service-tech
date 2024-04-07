@@ -20,7 +20,7 @@ export default defineConfig({
     svgr(),
     federation({
       name: 'remote_app',
-      filename: 'remoteEntry.js',
+      filename: 'service-tech-search.js',
       exposes: {
         './app/App': './src/app/App.tsx',
       },
@@ -32,7 +32,7 @@ export default defineConfig({
   },
   preview: {
     host: 'localhost',
-    port: 5001,
+    port: 3000,
     strictPort: true,
   },
   build: {

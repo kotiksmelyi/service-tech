@@ -20,4 +20,6 @@ export interface ISearchDetail {
   extention: string;
   tags: string[];
   similar: ISearchImage[];
+  distances: Record<string, { auto: string; public_transport: string; on_foot: string }> | null;
+  images_of_closest_places: Record<string, string[]> | null;
 }
