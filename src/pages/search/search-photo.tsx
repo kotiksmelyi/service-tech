@@ -38,6 +38,12 @@ const SearchPhoto = () => {
           <p>{t('A smart search will create a collection of similar images.')}</p>
         </Col>
       </Row>
+      {images?.data?.total === 0 && (
+        <div>
+          <h2 className="search-not-found">{t('Nothing was found')}</h2>
+          <span>{t('Try another query')}</span>
+        </div>
+      )}
       {images?.data?.items && (
         <ImageGrid
           images={images?.data.items.map((image) => ({

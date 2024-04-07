@@ -25,5 +25,7 @@
   "Change file": "Change file",
   "Upload photo": "Upload  photo",
   "Take or upload a photo. A smart search will create a collection of similar images.": "Take or upload a photo. A smart search will create a collection of similar images.",
-  "Download": "Загрузить"
+  "Download": "Download",
+  "Nothing was found": "Nothing was found",
+  "Try another query": "Try another query"
 }

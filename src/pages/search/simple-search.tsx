@@ -43,7 +43,12 @@ const SimpleSearch = () => {
             </Button>
           </Flex>
         </Flex>
-
+        {data?.data?.total === 0 && (
+          <div>
+            <h2 className="search-not-found">{t('Nothing was found')}</h2>
+            <span>{t('Try another query')}</span>
+          </div>
+        )}
         {data?.data.items && (
           <ImageGrid
             images={data?.data.items.map((image) => ({
