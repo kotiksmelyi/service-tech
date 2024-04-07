@@ -14,20 +14,22 @@ const Header = () => {
         <Link to={'/'} className="header-logo">
           <Logo />
         </Link>
-        <Dropdown
-          menu={{
-            items: [
-              { key: '1', label: <LanguageItem flag={RussianFlag} name="РУС" /> },
-              { key: '2', label: <LanguageItem flag={EnglishFlag} name="ENG" /> },
-            ],
-          }}
-          placement="bottomLeft"
-          // arrow={{ pointAtCenter: true }}
-        >
-          <a onClick={(e) => e.preventDefault()}>
-            <LanguageItem flag={RussianFlag} name="РУС" />
-          </a>
-        </Dropdown>
+        <div className="language">
+          <Dropdown
+            menu={{
+              items: [
+                { key: '1', label: <LanguageItem flag={RussianFlag} name="РУС" /> },
+                { key: '2', label: <LanguageItem flag={EnglishFlag} name="ENG" /> },
+              ],
+            }}
+            placement="bottomLeft"
+            // arrow={{ pointAtCenter: true }}
+          >
+            <a onClick={(e) => e.preventDefault()}>
+              <LanguageItem flag={RussianFlag} name="РУС" />
+            </a>
+          </Dropdown>
+        </div>
 
         {/* TODO: lang switch component */}
         <HeaderSvg />
