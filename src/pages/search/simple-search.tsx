@@ -17,8 +17,8 @@ const SimpleSearch = () => {
   const { data, isLoading, refetch } = useSimpleSearch({ params: { text: searchText } });
 
   return (
-    <Flex vertical>
-      <Form form={form} onFinish={refetch}>
+    <Form form={form} onFinish={refetch}>
+      <Flex vertical>
         <Flex gap={8} justify="space-between" wrap="wrap">
           <Flex vertical className="search-toggles-container">
             <SearchToggles />
@@ -35,7 +35,7 @@ const SimpleSearch = () => {
               </Flex>
             </Button>
 
-            <Button className="button" block type="primary" loading={isLoading}>
+            <Button htmlType="submit" className="button" block type="primary" loading={isLoading}>
               <Flex gap={4} align="center">
                 Найти
                 <SearchIcon />
@@ -43,19 +43,20 @@ const SimpleSearch = () => {
             </Button>
           </Flex>
         </Flex>
-      </Form>
-      {data?.data.items && (
-        <ImageGrid
-          images={data?.data.items.map((image) => ({
-            ...image,
-            src: `${BASE_URL}/${image.image}`,
-            tags: [],
-            key: image.id,
-            isSelected: false,
-          }))}
-        />
-      )}
-    </Flex>
+
+        {data?.data.items && (
+          <ImageGrid
+            images={data?.data.items.map((image) => ({
+              ...image,
+              src: `${BASE_URL}/${image.image}`,
+              tags: [],
+              key: image.id,
+              isSelected: false,
+            }))}
+          />
+        )}
+      </Flex>
+    </Form>
   );
 };
 
