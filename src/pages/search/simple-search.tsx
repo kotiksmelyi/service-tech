@@ -29,13 +29,12 @@ const SimpleSearch = () => {
           </Flex>
 
           <Flex gap={8} className="search-buttons" align="end">
-            <Button className="button" block>
+            {/* <Button className="button" block>
               <Flex gap={4} align="center">
                 {t('Filters')}
                 <FilterIcon />
               </Flex>
-            </Button>
-
+            </Button> */}
             <Button htmlType="submit" className="button" block type="primary" loading={isLoading}>
               <Flex gap={4} align="center">
                 {t('Search')}
